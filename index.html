@@ -1,126 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FH2 Global Network | Frost & Hog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
+    <title>Kopi Senja | Portofolio Web by Frost & Hog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-dark: #05080f; --cyan: #00f3ff; --text-light: #e2e8f0; }
+        :root { --coffee-dark: #2C1E16; --coffee-light: #D4A373; --cream: #FAEDCD; --text: #333; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Inter', sans-serif; background-color: var(--bg-dark); margin: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--cream); color: var(--text); }
 
-        /* Teks Melayang di Atas Bumi */
-        .header-overlay {
-            position: absolute; top: 0; left: 0; width: 100%;
-            text-align: center; padding: 30px 20px;
-            background: linear-gradient(to bottom, rgba(5,8,15,0.9) 0%, rgba(5,8,15,0) 100%);
-            z-index: 10; pointer-events: none;
-        }
-        h1 { 
-            font-family: 'Orbitron', sans-serif; color: var(--cyan); 
-            font-size: 2rem; text-transform: uppercase; 
-            letter-spacing: 4px; text-shadow: 0 0 20px rgba(0, 243, 255, 0.8); 
-            margin-bottom: 5px; 
-        }
-        p { color: #8892b0; font-size: 0.9rem; letter-spacing: 2px; }
-
-        /* Kontainer Bumi 3D */
-        #globeViz { width: 100vw; height: 100vh; z-index: 1; }
-
-        /* Desain Kotak Info (Tooltip) saat Pin diklik */
-        .scene-tooltip {
-            background: rgba(13, 17, 23, 0.95) !important;
-            border: 1px solid var(--cyan) !important;
-            border-radius: 8px !important;
-            padding: 15px !important;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4) !important;
-            color: #fff !important;
-            font-family: 'Inter', sans-serif !important;
-            text-align: center;
-        }
-        .scene-tooltip h3 { font-family: 'Orbitron'; color: var(--cyan); margin-bottom: 5px; font-size: 1.1rem; }
-        .scene-tooltip p { font-size: 0.8rem; color: #a8b2c1; margin-bottom: 10px; }
+        /* NAVBAR */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background-color: var(--coffee-dark); color: var(--cream); position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: bold; }
+        .nav-links a { color: var(--cream); text-decoration: none; margin-left: 20px; font-weight: 600; }
         
-        .teleport-btn {
-            display: inline-block; background: var(--cyan); color: #000;
-            padding: 8px 15px; text-decoration: none; font-weight: bold;
-            font-family: 'Orbitron'; border-radius: 5px; transition: 0.3s; font-size: 0.8rem;
-        }
-        .teleport-btn:hover { background: #fff; box-shadow: 0 0 15px var(--cyan); }
+        /* HERO SECTION */
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(44, 30, 22, 0.7), rgba(44, 30, 22, 0.7)), url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1500&auto=format&fit=crop') center/cover; color: var(--cream); padding: 20px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; }
+        .btn { padding: 15px 30px; background-color: var(--coffee-light); color: var(--coffee-dark); text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 1.1rem; transition: 0.3s; }
+        .btn:hover { background-color: #b5835a; }
+
+        /* MENU SECTION */
+        .menu { padding: 80px 50px; text-align: center; }
+        .menu h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; color: var(--coffee-dark); }
+        .menu-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .menu-item { background: #fff; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .menu-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+        .menu-item h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--coffee-dark); }
+        .menu-item p { color: #777; margin-bottom: 15px; }
+        .price { font-weight: bold; color: var(--coffee-light); font-size: 1.2rem; }
+
+        /* FOOTER */
+        footer { background-color: var(--coffee-dark); color: var(--cream); text-align: center; padding: 40px 20px; }
+        footer a { color: var(--coffee-light); text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <div class="header-overlay">
-        <h1>FH2 Global Network</h1>
-        <p>Drag to rotate. Click the neon nodes to teleport.</p>
-    </div>
+    <nav>
+        <div class="logo">Kopi Senja.</div>
+        <div class="nav-links">
+            <a href="#menu">Menu</a>
+            <a href="#contact">Kontak</a>
+        </div>
+    </nav>
 
-    <!-- Wadah Bumi -->
-    <div id="globeViz"></div>
+    <section class="hero">
+        <h1>Secangkir Kehangatan di Setiap Senja.</h1>
+        <p>Biji kopi pilihan, diseduh dengan penuh dedikasi untuk menemani cerita dan lelahmu hari ini.</p>
+        <a href="#menu" class="btn">Lihat Menu Kami</a>
+    </section>
 
-    <!-- Library Globe.gl (3D Earth) -->
-    <script src="//unpkg.com/three"></script>
-    <script src="//unpkg.com/three-globe"></script>
-    <script src="//unpkg.com/globe.gl"></script>
+    <section class="menu" id="menu">
+        <h2>Best Sellers</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop" alt="Es Kopi Susu">
+                <h3>Es Kopi Senja</h3>
+                <p>Espresso double shot dengan susu segar dan gula aren rahasia.</p>
+                <div class="price">Rp 22.000</div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?q=80&w=600&auto=format&fit=crop" alt="Americano">
+                <h3>Americano Panas</h3>
+                <p>Kopi hitam murni dari biji Arabika Gayo, pahit yang menenangkan.</p>
+                <div class="price">Rp 18.000</div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=600&auto=format&fit=crop" alt="Croissant">
+                <h3>Butter Croissant</h3>
+                <p>Pastry renyah berlapis mentega premium, pasangan sempurna kopi Anda.</p>
+                <div class="price">Rp 25.000</div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // 1. Inisialisasi Bumi
-        const world = Globe()
-            (document.getElementById('globeViz'))
-            .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg') // Menggunakan tekstur bumi versi gelap
-            .backgroundColor('rgba(0,0,0,0)') // Background transparan (mengikuti warna body)
-            .showAtmosphere(true)
-            .atmosphereColor('#00f3ff') // Efek atmosfer biru neon
-            .atmosphereAltitude(0.15)
-            .width(window.innerWidth)
-            .height(window.innerHeight);
+    <footer id="contact">
+        <p style="margin-bottom: 10px;">&copy; 2026 Kopi Senja. All rights reserved.</p>
+        <p style="font-size: 0.9rem; color: #888;">Website designed by <a href="#">Frost & Hog Cyber Team</a></p>
+    </footer>
 
-        // Posisi kamera awal (sedikit di atas ekuator)
-        world.pointOfView({ lat: 20, lng: 0, altitude: 2.5 });
-
-        // 2. Data Lokasi (Titik-titik di Bumi)
-        const locations = [
-            { lat: -6.2088, lng: 106.8456, name: "FH2 Base: Jakarta", desc: "Main command center.", query: "Monumen+Nasional+Jakarta" },
-            { lat: 35.6762, lng: 139.6503, name: "Node: Tokyo", desc: "UI/UX partner network.", query: "Tokyo+Tower" },
-            { lat: 51.5074, lng: -0.1278, name: "Node: London", desc: "PenTest network.", query: "Big+Ben+London" },
-            { lat: 40.7128, lng: -74.0060, name: "Node: New York", desc: "Data center monitoring.", query: "Statue+of+Liberty" },
-            { lat: -33.8688, lng: 151.2093, name: "Node: Sydney", desc: "Southern hemisphere operations.", query: "Sydney+Opera+House" }
-        ];
-
-        // 3. Fungsi untuk Membuat HTML di dalam Tooltip
-        function getTooltipHTML(loc) {
-            return `
-                <div>
-                    <h3>${loc.name}</h3>
-                    <p>${loc.desc}</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=${loc.query}" target="_blank" class="teleport-btn">TELEPORT TO MAPS</a>
-                </div>
-            `;
-        }
-
-        // 4. Masukkan Titik (Pin) ke Bumi
-        world
-            .pointsData(locations)
-            .pointLat('lat')
-            .pointLng('lng')
-            .pointColor(() => '#00f3ff') // Warna pin neon cyan
-            .pointAltitude(0.02) // Sedikit menonjol dari permukaan bumi
-            .pointRadius(0.4) // Ukuran pin
-            .pointLabel(d => getTooltipHTML(d)); // Menampilkan kotak info saat di-hover/klik
-
-        // 5. Sesuaikan Ukuran Bumi Jika Layar Di-resize (misal HP diputar)
-        window.addEventListener('resize', () => {
-            world.width(window.innerWidth).height(window.innerHeight);
-        });
-
-        // 6. Kontrol Rotasi Otomatis (Bumi berputar pelan sendiri)
-        world.controls().autoRotate = true;
-        world.controls().autoRotateSpeed = 0.8;
-        world.controls().enableDamping = true;
-
-    </script>
 </body>
 </html>
