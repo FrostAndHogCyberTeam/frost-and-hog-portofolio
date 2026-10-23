@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan | Kopi Senja</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --coffee-dark: #2C1E16; --coffee-light: #D4A373; --cream: #FAEDCD; --text: #333; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--cream); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 80px 20px 40px; }
+
+        /* TOMBOL BACK */
+        .back-link { position: absolute; top: 30px; left: 30px; text-decoration: none; color: var(--coffee-dark); font-weight: bold; border: 1px solid var(--coffee-dark); padding: 8px 15px; border-radius: 5px; transition: 0.3s; }
+        .back-link:hover { background: var(--coffee-dark); color: var(--cream); }
+
+        .container { max-width: 600px; width: 100%; background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--coffee-dark); margin-bottom: 10px; }
+        .subtitle { color: #777; margin-bottom: 40px; font-size: 0.95rem; }
+
+        h2 { font-size: 1.1rem; color: var(--coffee-dark); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--cream); padding-bottom: 10px; }
+
+        /* TOMBOL APLIKASI ONLINE */
+        .delivery-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
+        .delivery-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1rem; transition: 0.3s; color: #fff; }
+        
+        .gofood { background: #EE2737; }
+        .gofood:hover { background: #c41e2b; }
+        .grabfood { background: #00B14F; }
+        .grabfood:hover { background: #009141; }
+        .shopeefood { background: #EE4D2D; }
+        .shopeefood:hover { background: #c43d22; }
+
+        /* SECTION KONTAK ACARA */
+        .event-section { background: var(--cream); padding: 30px 20px; border-radius: 10px; border: 1px dashed var(--coffee-light); }
+        .event-section p { font-size: 0.9rem; color: #555; margin-bottom: 20px; line-height: 1.6; }
+        
+        .btn-wa { display: inline-block; background: #25D366; color: #fff; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1rem; margin-bottom: 15px; transition: 0.3s; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+        .btn-wa:hover { background: #1ebd58; transform: translateY(-2px); }
+
+        .social-links { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+        .social-links a { color: var(--coffee-dark); text-decoration: none; font-weight: bold; font-size: 0.9rem; background: #fff; padding: 8px 15px; border-radius: 5px; border: 1px solid #ddd; transition: 0.3s;}
+        .social-links a:hover { border-color: var(--coffee-light); color: var(--coffee-light); }
+
+        footer { margin-top: 40px; font-size: 0.8rem; color: #888; text-align: center; }
+        footer a { color: var(--coffee-light); text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <a href="kopi-senja.html" class="back-link">← Kembali ke Menu</a>
+
+    <div class="container">
+        <h1>Pesan Sekarang</h1>
+        <p class="subtitle">Nikmati Kopi Senja langsung ke tempat Anda atau pesan untuk acara spesial.</p>
+
+        <h2>Order via Online Delivery</h2>
+        <div class="delivery-grid">
+            <!-- GANTI LINK DI BAWAH DENGAN LINK TOKO KLIEN NANTI -->
+            <a href="#" class="delivery-btn gofood">🛵 Pesan via GoFood</a>
+            <a href="#" class="delivery-btn grabfood">🛵 Pesan via GrabFood</a>
+            <a href="#" class="delivery-btn shopeefood">🛵 Pesan via ShopeeFood</a>
+        </div>
+
+        <h2>Catering & Acara Besar</h2>
+        <div class="event-section">
+            <p>Butuh pesanan dalam jumlah besar untuk acara kantor, ulang tahun, atau *wedding*? Tim kami siap membantu kebutuhan konsumsi acara Anda.</p>
+            
+            <!-- GANTI NOMOR WA DAN LINK IG NANTI -->
+            <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">💬 Hubungi via WhatsApp</a>
+            
+            <div class="social-links">
+                <a href="https://instagram.com/kopisenja" target="_blank">📸 Instagram</a>
+                <a href="https://tiktok.com/@kopisenja" target="_blank">🎵 TikTok</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Kopi Senja. Website designed by <a href="index.html">Frost & Hog Cyber Team</a>.
+    </footer>
+
+</body>
+</html>
