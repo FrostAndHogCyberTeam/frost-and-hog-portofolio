@@ -4,47 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemesanan | Kopi Senja</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { --coffee-dark: #2C1E16; --coffee-light: #D4A373; --cream: #FAEDCD; --text: #333; }
+        :root { --coffee-dark: #2C1E16; --coffee-light: #D4A373; --cream: #FAEDCD; --text: #333; --white: #ffffff; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--cream); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 80px 20px 40px; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--cream); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 100px 20px 40px; -webkit-font-smoothing: antialiased; }
 
-        /* TOMBOL BACK */
-        .back-link { position: absolute; top: 30px; left: 30px; text-decoration: none; color: var(--coffee-dark); font-weight: bold; border: 1px solid var(--coffee-dark); padding: 8px 15px; border-radius: 5px; transition: 0.3s; }
-        .back-link:hover { background: var(--coffee-dark); color: var(--cream); }
+        .back-link { position: absolute; top: 30px; left: 30px; text-decoration: none; color: var(--coffee-dark); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .back-link:hover { color: var(--coffee-light); }
 
-        .container { max-width: 600px; width: 100%; background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .container { max-width: 700px; width: 100%; }
+
+        .header-section { text-align: center; margin-bottom: 40px; }
+        .header-section h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--coffee-dark); margin-bottom: 10px; }
+        .header-section p { color: #777; font-size: 0.95rem; line-height: 1.6; }
+
+        /* CARD DELIVERY */
+        .delivery-card { background: var(--white); border-radius: 20px; padding: 40px; box-shadow: 0 15px 50px rgba(0,0,0,0.06); margin-bottom: 30px; }
+        .delivery-card h2 { font-size: 1.1rem; color: var(--coffee-dark); margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1.5px; text-align: center; font-weight: 600; }
+
+        .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--coffee-dark); margin-bottom: 10px; }
-        .subtitle { color: #777; margin-bottom: 40px; font-size: 0.95rem; }
+        /* TOMBOL DELIVERY FIKTIF */
+        .delivery-btn { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; 
+            padding: 25px 20px; border-radius: 16px; text-decoration: none; font-weight: 600; font-size: 1rem; 
+            transition: 0.3s; color: var(--coffee-dark); background: #fafafa; border: 2px solid #f0f0f0;
+        }
+        .delivery-btn:hover { background: var(--coffee-dark); color: var(--cream); border-color: var(--coffee-dark); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .delivery-btn svg { width: 35px; height: 35px; fill: currentColor; margin-bottom: 5px; }
+        .delivery-btn span { font-size: 0.85rem; font-weight: 400; opacity: 0.7; }
 
-        h2 { font-size: 1.1rem; color: var(--coffee-dark); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--cream); padding-bottom: 10px; }
-
-        /* TOMBOL APLIKASI ONLINE */
-        .delivery-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
-        .delivery-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1rem; transition: 0.3s; color: #fff; }
+        /* CARD EVENT / CATERING */
+        .event-card { 
+            background: var(--coffee-dark); color: var(--cream); border-radius: 20px; padding: 40px; 
+            text-align: center; box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            position: relative; overflow: hidden;
+        }
+        .event-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--coffee-light); }
+        .event-card h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; }
+        .event-card p { font-size: 0.95rem; line-height: 1.7; margin-bottom: 30px; opacity: 0.85; font-weight: 300; max-width: 500px; margin-left: auto; margin-right: auto; }
         
-        .gofood { background: #EE2737; }
-        .gofood:hover { background: #c41e2b; }
-        .grabfood { background: #00B14F; }
-        .grabfood:hover { background: #009141; }
-        .shopeefood { background: #EE4D2D; }
-        .shopeefood:hover { background: #c43d22; }
+        /* TOMBOL WHATSAPP */
+        .btn-wa { 
+            display: inline-flex; align-items: center; gap: 10px; 
+            background: #25D366; color: var(--white); padding: 15px 35px; 
+            border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; 
+            transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); margin-bottom: 30px;
+        }
+        .btn-wa:hover { background: #1ebd58; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
+        .btn-wa svg { width: 22px; height: 22px; fill: currentColor; }
 
-        /* SECTION KONTAK ACARA */
-        .event-section { background: var(--cream); padding: 30px 20px; border-radius: 10px; border: 1px dashed var(--coffee-light); }
-        .event-section p { font-size: 0.9rem; color: #555; margin-bottom: 20px; line-height: 1.6; }
-        
-        .btn-wa { display: inline-block; background: #25D366; color: #fff; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1rem; margin-bottom: 15px; transition: 0.3s; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
-        .btn-wa:hover { background: #1ebd58; transform: translateY(-2px); }
+        /* SOSIAL MEDIA */
+        .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
+        .social-links a { 
+            color: var(--cream); text-decoration: none; font-size: 0.9rem; 
+            padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(250, 237, 205, 0.2); 
+            transition: 0.3s; display: flex; align-items: center; gap: 8px;
+        }
+        .social-links a:hover { background: rgba(250, 237, 205, 0.1); border-color: var(--coffee-light); }
+        .social-links svg { width: 18px; height: 18px; fill: currentColor; }
 
-        .social-links { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
-        .social-links a { color: var(--coffee-dark); text-decoration: none; font-weight: bold; font-size: 0.9rem; background: #fff; padding: 8px 15px; border-radius: 5px; border: 1px solid #ddd; transition: 0.3s;}
-        .social-links a:hover { border-color: var(--coffee-light); color: var(--coffee-light); }
+        footer { margin-top: 40px; font-size: 0.8rem; color: #999; text-align: center; }
+        footer a { color: var(--coffee-light); text-decoration: none; font-weight: 600; }
 
-        footer { margin-top: 40px; font-size: 0.8rem; color: #888; text-align: center; }
-        footer a { color: var(--coffee-light); text-decoration: none; font-weight: bold; }
+        @media (max-width: 600px) {
+            .delivery-grid { grid-template-columns: 1fr; }
+            .delivery-card { padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
@@ -52,27 +79,52 @@
     <a href="kopi-senja.html" class="back-link">← Kembali ke Menu</a>
 
     <div class="container">
-        <h1>Pesan Sekarang</h1>
-        <p class="subtitle">Nikmati Kopi Senja langsung ke tempat Anda atau pesan untuk acara spesial.</p>
-
-        <h2>Order via Online Delivery</h2>
-        <div class="delivery-grid">
-            <!-- GANTI LINK DI BAWAH DENGAN LINK TOKO KLIEN NANTI -->
-            <a href="#" class="delivery-btn gofood">🛵 Pesan via GoFood</a>
-            <a href="#" class="delivery-btn grabfood">🛵 Pesan via GrabFood</a>
-            <a href="#" class="delivery-btn shopeefood">🛵 Pesan via ShopeeFood</a>
+        <div class="header-section">
+            <h1>Pesan Sekarang</h1>
+            <p>Nikmati Kopi Senja langsung ke tempat Anda atau pesan untuk acara spesial.</p>
         </div>
 
-        <h2>Catering & Acara Besar</h2>
-        <div class="event-section">
+        <!-- CARD DELIVERY -->
+        <div class="delivery-card">
+            <h2>Order via Online Delivery</h2>
+            <div class="delivery-grid">
+                
+                <!-- GOJOL -->
+                <a href="#" class="delivery-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 7c0-1.1-.9-2-2-2h-3v2h3v2.65L12.48 17H7v-2h2.5l-.5-2H5v4c0 1.1.9 2 2 2h5.52c.64 0 1.24-.3 1.63-.81L20 9.67V7zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm10 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+                    Gojol
+                    <span>Pesan via aplikasi</span>
+                </a>
+                
+                <!-- GRIP -->
+                <a href="#" class="delivery-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2v-4h2v4zm0-6h-2V8h2v2z"/></svg>
+                    Grip
+                    <span>Pesan via aplikasi</span>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- CARD EVENT -->
+        <div class="event-card">
+            <h2>Catering & Acara Besar</h2>
             <p>Butuh pesanan dalam jumlah besar untuk acara kantor, ulang tahun, atau *wedding*? Tim kami siap membantu kebutuhan konsumsi acara Anda.</p>
             
-            <!-- GANTI NOMOR WA DAN LINK IG NANTI -->
-            <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">💬 Hubungi via WhatsApp</a>
+            <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Hubungi via WhatsApp
+            </a>
             
             <div class="social-links">
-                <a href="https://instagram.com/kopisenja" target="_blank">📸 Instagram</a>
-                <a href="https://tiktok.com/@kopisenja" target="_blank">🎵 TikTok</a>
+                <a href="https://instagram.com/kopisenja" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    Instagram
+                </a>
+                <a href="https://tiktok.com/@kopisenja" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                    TikTok
+                </a>
             </div>
         </div>
     </div>
