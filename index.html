@@ -6,34 +6,36 @@
     <title>FH2 Global Network | Frost & Hog</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- Leaflet.js untuk Peta -->
+    <!-- Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <style>
         :root { --bg-dark: #05080f; --cyan: #00f3ff; --text-light: #e2e8f0; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-light); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
-        
-        /* HEADER */
-        header { text-align: center; padding: 20px; background: linear-gradient(to bottom, rgba(5,8,15,1) 0%, rgba(5,8,15,0.8) 100%); z-index: 10; border-bottom: 1px solid rgba(0, 243, 255, 0.2); }
+        html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Inter', sans-serif; background-color: var(--bg-dark); }
+
+        .header-overlay {
+            position: absolute; top: 0; left: 0; width: 100%;
+            text-align: center; padding: 20px;
+            background: linear-gradient(to bottom, rgba(5,8,15,1) 0%, rgba(5,8,15,0) 100%);
+            z-index: 1000; pointer-events: none;
+        }
         h1 { font-family: 'Orbitron', sans-serif; color: var(--cyan); font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 15px rgba(0, 243, 255, 0.5); margin-bottom: 5px; }
         p { color: #8892b0; font-size: 0.85rem; letter-spacing: 1px; }
 
-        /* CONTAINER PETA */
-        #map { flex: 1; width: 100%; z-index: 1; }
+        #map { width: 100vw; height: 100vh; z-index: 1; background-color: var(--bg-dark); }
 
-        /* KUSTOMISASI POP-UP PETA */
+        /* Pop-up Kustom */
         .leaflet-popup-content-wrapper { background: #0d1117; color: #fff; border: 1px solid var(--cyan); border-radius: 8px; box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
         .leaflet-popup-tip { background: #0d1117; border-left: 1px solid var(--cyan); border-bottom: 1px solid var(--cyan); }
         .leaflet-popup-content h3 { font-family: 'Orbitron'; color: var(--cyan); margin-bottom: 5px; font-size: 1.1rem; }
         .leaflet-popup-content p { font-size: 0.85rem; color: #a8b2c1; margin-bottom: 10px; }
         
-        /* Tombol Teleport */
         .teleport-btn { display: block; text-align: center; background: var(--cyan); color: #000; padding: 8px 15px; text-decoration: none; font-weight: bold; font-family: 'Orbitron'; border-radius: 5px; transition: 0.3s; font-size: 0.8rem; }
         .teleport-btn:hover { background: #fff; box-shadow: 0 0 10px var(--cyan); }
 
-        /* Efek Invert (Peta Gelap) */
+        /* Efek Peta Gelap */
         .leaflet-layer, .leaflet-control-zoom-in, .leaflet-control-zoom-out, .leaflet-control-attribution {
             filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
         }
@@ -41,26 +43,36 @@
 </head>
 <body>
 
-    <header>
+    <div class="header-overlay">
         <h1>FH2 Global Network</h1>
         <p>Interactive Teleportation & Operations Map</p>
-    </header>
+    </div>
 
     <div id="map"></div>
 
     <script>
-        // 1. INISIALISASI PETA
-        const map = L.map('map').setView([20, 0], 2);
+        // 1. Inisialisasi Peta dengan Batasan Dunia (Anti Duplikat)
+        const map = L.map('map', {
+            minZoom: 2, // Mencegah zoom out terlalu jauh agar tidak muncul peta ganda
+            maxBounds: [ // Membatasi geseran hanya di bumi (tidak bisa ke samping tanpa henti)
+                [-90, -180], // Batas Bawah Kiri (Lintang Selatan, Bujur Barat)
+                [90, 180]    // Batas Atas Kanan (Lintang Utara, Bujur Timur)
+            ],
+            maxBoundsViscosity: 1.0 // Membuat peta "memantul" jika digeser keluar batas
+        }).setView([20, 0], 2); 
 
-        // 2. TILE LAYER (Peta Dasar)
+        // 2. Tile Layer OpenStreetMap (Bisa di-zoom sampai level jalan)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 19, // Level zoom maksimal (setara street view di Google Maps)
+            noWrap: true, // Mencegah peta berulang
+            bounds: [[-90, -180], [90, 180]] // Kunci batas tile
         }).addTo(map);
 
-        // 3. IKON PIN NEON BERKEDIP
+        // 3. Ikon Pin Neon
         const neonIcon = L.divIcon({
             className: 'custom-icon',
-            html: `<div style="width: 15px; height: 15px; background: #00f3ff; border-radius: 50%; box-shadow: 0 0 15px #00f3ff, 0 0 30px #00f3ff; animation: pulse 1.5s infinite;"></div>
+            html: `<div style="width: 12px; height: 12px; background: #00f3ff; border-radius: 50%; box-shadow: 0 0 15px #00f3ff, 0 0 30px #00f3ff; animation: pulse 1.5s infinite;"></div>
                    <style>
                        @keyframes pulse {
                            0% { transform: scale(1); opacity: 1; }
@@ -68,43 +80,29 @@
                            100% { transform: scale(1); opacity: 1; }
                        }
                    </style>`,
-            iconSize: [15, 15],
-            iconAnchor: [7, 7]
+            iconSize: [12, 12],
+            iconAnchor: [6, 6]
         });
 
-        // 4. TAMBAHKAN LOKASI (Klik untuk Teleport ke Google Maps)
-        
-        // Jakarta (Base)
-        L.marker([-6.2088, 106.8456], {icon: neonIcon}).addTo(map)
-            .bindPopup(`
-                <h3>FH2 Base: Jakarta</h3>
-                <p>Main command center for Cyber Security & Web Dev operations.</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Monumen+Nasional+Jakarta" target="_blank" class="teleport-btn">TELEPORT TO MAPS</a>
-            `);
+        // 4. Titik Lokasi
+        const locations = [
+            { coords: [-6.2088, 106.8456], title: "FH2 Base: Jakarta", desc: "Main command center.", query: "Monumen+Nasional+Jakarta" },
+            { coords: [35.6762, 139.6503], title: "Node: Tokyo", desc: "UI/UX partner network.", query: "Tokyo+Tower" },
+            { coords: [51.5074, -0.1278], title: "Node: London", desc: "PenTest network.", query: "Big+Ben+London" },
+            { coords: [40.7128, -74.0060], title: "Node: New York", desc: "Data center monitoring.", query: "Statue+of+Liberty" }
+        ];
 
-        // Tokyo
-        L.marker([35.6762, 139.6503], {icon: neonIcon}).addTo(map)
-            .bindPopup(`
-                <h3>Node: Tokyo</h3>
-                <p>UI/UX Design partner network in East Asia.</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Tokyo+Tower" target="_blank" class="teleport-btn">TELEPORT TO MAPS</a>
-            `);
+        locations.forEach(loc => {
+            L.marker(loc.coords, {icon: neonIcon}).addTo(map)
+                .bindPopup(`
+                    <h3>${loc.title}</h3>
+                    <p>${loc.desc}</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${loc.query}" target="_blank" class="teleport-btn">TELEPORT TO MAPS</a>
+                `);
+        });
 
-        // London
-        L.marker([51.5074, -0.1278], {icon: neonIcon}).addTo(map)
-            .bindPopup(`
-                <h3>Node: London</h3>
-                <p>International Penetration Testing network.</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Big+Ben+London" target="_blank" class="teleport-btn">TELEPORT TO MAPS</a>
-            `);
-
-        // New York
-        L.marker([40.7128, -74.0060], {icon: neonIcon}).addTo(map)
-            .bindPopup(`
-                <h3>Node: New York</h3>
-                <p>Data center monitoring and threat analysis.</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Statue+of+Liberty" target="_blank" class="teleport-btn">TELEPORT TO MAPS</a>
-            `);
+        // 5. Paksa resize
+        setTimeout(() => { map.invalidateSize(); }, 500);
     </script>
 </body>
 </html>
