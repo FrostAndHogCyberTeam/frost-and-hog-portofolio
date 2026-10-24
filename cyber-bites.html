@@ -100,7 +100,8 @@
                     <button class="btn-order" onclick="addToCart('The Glitch Burger', 55000)">ADD TO CART</button>
                 </div>
             </div>
-            <!-- HOTDOG DIPERBAIKI (Gambar Lokal) -->
+            
+            <!-- MENGGUNAKAN GAMBAR LOKAL: hotdog.jpg -->
             <div class="menu-item">
                 <img src="img/hotdog.jpg" alt="Cyber Dog">
                 <h3>Cyber Dog</h3>
@@ -110,6 +111,7 @@
                     <button class="btn-order" onclick="addToCart('Cyber Dog', 40000)">ADD TO CART</button>
                 </div>
             </div>
+            
             <div class="menu-item">
                 <img src="https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=600&auto=format&fit=crop" alt="Matrix Chicken">
                 <h3>Matrix Chicken</h3>
@@ -138,7 +140,8 @@
         <!-- FUEL & COOLANT -->
         <h2 class="category-title">Fuel & Coolant</h2>
         <div class="menu-grid">
-            <!-- BLUE SODA DIPERBAIKI (Gambar Lokal) -->
+            
+            <!-- MENGGUNAKAN GAMBAR LOKAL: bluesoda.jpg -->
             <div class="menu-item">
                 <img src="img/bluesoda.jpg" alt="Laser Lemonade">
                 <h3>Laser Lemonade</h3>
@@ -148,6 +151,7 @@
                     <button class="btn-order" onclick="addToCart('Laser Lemonade', 22000)">ADD TO CART</button>
                 </div>
             </div>
+            
             <div class="menu-item">
                 <img src="https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?q=80&w=600&auto=format&fit=crop" alt="Neon Cola">
                 <h3>Neon Cola</h3>
@@ -199,7 +203,7 @@
             cart.push({ name, price });
             updateCartUI();
             
-            // Efek suara klik (opsional)
+            // Efek suara klik
             const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
             audio.volume = 0.3;
             audio.play().catch(e => {});
@@ -265,7 +269,7 @@
                 username: "Cyber Bites Order System",
                 embeds: [{
                     title: "🍔 NEW ORDER RECEIVED",
-                    color: 3921660, // Warna hijau neon
+                    color: 3921660,
                     fields: [
                         { name: "Order Details", value: itemsText },
                         { name: "Total Amount", value: `Rp ${total.toLocaleString('id-ID')}`, inline: true }
