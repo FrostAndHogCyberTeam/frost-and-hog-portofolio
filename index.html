@@ -30,63 +30,41 @@
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; display: none; }
         .overlay.active { display: block; }
 
-        /* --- HEADER PORTFOLIO (Tema Cyber) --- */
+        /* --- HEADER PORTFOLIO --- */
         .portfolio-header { 
             padding: 140px 20px 80px; text-align: center; 
             background: radial-gradient(circle at center, #0a1525 0%, var(--bg-dark) 100%);
             position: relative;
         }
-        .portfolio-header h1 { 
-            font-family: 'Orbitron', sans-serif; color: var(--cyan); 
-            font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; 
-            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5); margin-bottom: 15px; z-index: 2; letter-spacing: 4px;
-        }
+        .portfolio-header h1 { font-family: 'Orbitron', sans-serif; color: var(--cyan); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; text-shadow: 0 0 20px rgba(0, 243, 255, 0.5); margin-bottom: 15px; z-index: 2; letter-spacing: 4px; }
         .portfolio-header p { color: #a8b2c1; font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6; z-index: 2; }
         .agents-img { height: 220px; z-index: 2; animation: floatAgent 4s ease-in-out infinite; filter: drop-shadow(0px 20px 30px rgba(0, 243, 255, 0.4)); margin-bottom: 20px; }
         @keyframes floatAgent { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
-        /* --- SECTION ARCTIC OPS (Kutub Utara) --- */
-        .ski-section { 
-            position: relative; width: 100%; height: 60vh; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; overflow: hidden; 
-            background-image: url('img/kutub.jpg'); background-size: cover; background-position: center; 
-            background-repeat: no-repeat; background-attachment: fixed; 
-            border-top: 1px solid rgba(0,243,255,0.2); border-bottom: 1px solid rgba(0,243,255,0.2);
-        }
+        /* --- SECTION ARCTIC OPS --- */
+        .ski-section { position: relative; width: 100%; height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; background-image: url('img/kutub.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; border-top: 1px solid rgba(0,243,255,0.2); border-bottom: 1px solid rgba(0,243,255,0.2); }
         .ski-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 8, 15, 0.5); z-index: 1; }
-        
         .ski-content { position: relative; z-index: 2; text-align: center; margin-top: -50px; }
         .ski-title { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: #fff; text-transform: uppercase; text-shadow: 0 0 20px var(--cyan), 0 0 40px var(--cyan); }
         .ski-subtitle { color: #fff; font-size: 1rem; letter-spacing: 3px; margin-top: 15px; font-weight: 600; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
-        
         .ski-img { position: absolute; bottom: 5%; left: -500px; height: 200px; z-index: 3; animation: skiing 8s linear infinite; filter: drop-shadow(0px 20px 25px rgba(0,0,0,0.9)); }
         @keyframes skiing { 0% { transform: translateX(0px) translateY(0px) rotate(0deg); } 25% { transform: translateX(30vw) translateY(-15px) rotate(-6deg); } 50% { transform: translateX(60vw) translateY(0px) rotate(0deg); } 75% { transform: translateX(90vw) translateY(-15px) rotate(6deg); } 100% { transform: translateX(130vw) translateY(0px) rotate(0deg); } }
         .snow { position: absolute; top: -10px; background: #fff; border-radius: 50%; opacity: 0.8; z-index: 2; animation: fall linear infinite; }
         @keyframes fall { to { transform: translateY(105vh); } }
 
-        /* --- GRID PORTFOLIO (Khusus Web 2) --- */
+        /* --- GRID PORTFOLIO --- */
         .portfolio-section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
         .section-title { font-family: 'Orbitron', sans-serif; color: var(--pink); text-align: center; font-size: 2rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px; }
-        
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
-        .card { 
-            background: rgba(255,255,255,0.02); border: 1px solid rgba(0,243,255,0.15); 
-            border-radius: 16px; overflow: hidden; position: relative; text-decoration: none; color: inherit;
-            display: flex; flex-direction: column; transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+        .card { background: rgba(255,255,255,0.02); border: 1px solid rgba(0,243,255,0.15); border-radius: 16px; overflow: hidden; position: relative; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,243,255,0.15); border-color: var(--cyan); }
-        
         .card-img-wrapper { width: 100%; height: 240px; overflow: hidden; position: relative; }
         .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .card:hover .card-img { transform: scale(1.1); }
         .card-img-wrapper::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(5,8,15,1), transparent); }
-
         .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; position: relative; z-index: 2; margin-top: -30px; }
         .card-title { font-family: 'Orbitron', sans-serif; color: #fff; font-size: 1.5rem; margin-bottom: 10px; }
         .card-desc { color: #a8b2c1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
-        
         .tags { display: flex; gap: 10px; flex-wrap: wrap; }
         .card-tag { background: rgba(0, 243, 255, 0.1); color: var(--cyan); padding: 5px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; }
 
@@ -94,13 +72,7 @@
         .hire-section { text-align: center; padding: 80px 20px; background: linear-gradient(to top, #020408, #05080f); border-top: 1px solid rgba(0, 243, 255, 0.15); }
         .hire-section h2 { font-family: 'Orbitron', sans-serif; color: var(--cyan); font-size: 2rem; margin-bottom: 20px; text-shadow: 0 0 15px rgba(0,243,255,0.3); }
         .hire-section p { color: #8892b0; margin-bottom: 35px; font-size: 1.1rem; }
-        
-        .btn-hire { 
-            display: inline-block; padding: 18px 50px; background: transparent; color: var(--cyan); 
-            border: 2px solid var(--cyan); font-family: 'Orbitron', sans-serif; font-weight: 900; 
-            font-size: 1.3rem; text-decoration: none; border-radius: 8px; transition: 0.3s; 
-            letter-spacing: 3px; box-shadow: 0 0 20px rgba(0,243,255,0.15); 
-        }
+        .btn-hire { display: inline-block; padding: 18px 50px; background: transparent; color: var(--cyan); border: 2px solid var(--cyan); font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.3rem; text-decoration: none; border-radius: 8px; transition: 0.3s; letter-spacing: 3px; box-shadow: 0 0 20px rgba(0,243,255,0.15); }
         .btn-hire:hover { background: var(--cyan); color: #000; box-shadow: 0 0 40px var(--cyan); transform: translateY(-5px); }
 
         /* --- FOOTER --- */
@@ -114,6 +86,17 @@
     </style>
 </head>
 <body>
+
+    <!-- PERINGATAN PORTFOLIO (SEPERTI SHOW UNIT) -->
+    <div id="portfolio-warning" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 8, 15, 0.95); backdrop-filter: blur(8px); z-index: 99999; display: flex; justify-content: center; align-items: center; text-align: center; padding: 20px;">
+        <div style="max-width: 650px; background: rgba(13, 17, 23, 0.9); border: 1px solid var(--cyan); border-radius: 20px; padding: 50px 40px; box-shadow: 0 0 50px rgba(0, 243, 255, 0.2), inset 0 0 30px rgba(0,0,0,0.5); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--cyan), var(--pink));"></div>
+            <h2 style="font-family: 'Orbitron', sans-serif; color: var(--cyan); margin-bottom: 20px; font-size: 1.8rem; letter-spacing: 2px; text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);">⚠️ PORTFOLIO SHOWCASE</h2>
+            <p style="color: #e2e8f0; margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; text-align: justify;">Anda sedang melihat <b>Contoh Website (Showcase)</b> yang dirancang khusus oleh Frost & Hog Cyber Team untuk keperluan portofolio.</p>
+            <p style="color: #8892b0; margin-bottom: 30px; line-height: 1.6; font-size: 0.95rem; text-align: justify; border-left: 3px solid var(--pink); padding-left: 15px;">Segala bentuk transaksi, tautan eksternal, dan kontak yang ada di dalam web ini adalah <b>fiktif/dummy</b>. Dilarang menggunakan, menyalin, atau memperjualbelikan desain ini tanpa izin tertulis dari tim kami.</p>
+            <button onclick="document.getElementById('portfolio-warning').style.display='none'" style="background: transparent; color: var(--cyan); border: 2px solid var(--cyan); padding: 15px 40px; font-weight: 900; font-family: 'Orbitron', sans-serif; font-size: 1rem; border-radius: 8px; cursor: pointer; transition: 0.3s; letter-spacing: 2px; box-shadow: 0 0 15px rgba(0,243,255,0.2);" onmouseover="this.style.background='var(--cyan)'; this.style.color='#000'; this.style.boxShadow='0 0 30px var(--cyan)';" onmouseout="this.style.background='transparent'; this.style.color='var(--cyan)'; this.style.boxShadow='0 0 15px rgba(0,243,255,0.2)';">SAYA MENGERTI & MASUK</button>
+        </div>
+    </div>
 
     <!-- NAVBAR & SIDEBAR -->
     <div class="navbar"><div class="menu-btn" onclick="toggleMenu()">☰</div></div>
@@ -133,7 +116,7 @@
         <p>Showcasing our best digital works. Crafted with precision, secured with code.</p>
     </div>
 
-    <!-- SECTION ARCTIC OPS (KUTUB UTARA) -->
+    <!-- SECTION ARCTIC OPS -->
     <section class="ski-section">
         <div class="snow" style="left: 10%; width: 8px; height: 8px; animation-duration: 4s;"></div>
         <div class="snow" style="left: 30%; width: 6px; height: 6px; animation-duration: 6s;"></div>
@@ -141,7 +124,6 @@
         <div class="snow" style="left: 70%; width: 5px; height: 5px; animation-duration: 3s;"></div>
         <div class="snow" style="left: 85%; width: 9px; height: 9px; animation-duration: 4.5s;"></div>
         <div class="snow" style="left: 95%; width: 7px; height: 7px; animation-duration: 7s;"></div>
-        
         <div class="ski-content">
             <h2 class="ski-title">Arctic Ops</h2>
             <p class="ski-subtitle">WE OPERATE IN ALL CONDITIONS.</p>
@@ -153,8 +135,6 @@
     <section class="portfolio-section">
         <h2 class="section-title">Featured Projects</h2>
         <div class="grid">
-            
-            <!-- KARTU KOPI SENJA -->
             <a href="kopi-senja.html" class="card">
                 <div class="card-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="Kopi Senja" class="card-img">
@@ -162,14 +142,9 @@
                 <div class="card-content">
                     <div class="card-title">Kopi Senja</div>
                     <p class="card-desc">Desain web modern untuk Coffee Shop & Restoran. Dilengkapi katalog menu lengkap, integrasi layanan antar, dan portal pemesanan khusus.</p>
-                    <div class="tags">
-                        <span class="card-tag">WEB DESIGN</span>
-                        <span class="card-tag">UI/UX</span>
-                    </div>
+                    <div class="tags"><span class="card-tag">WEB DESIGN</span><span class="card-tag">UI/UX</span></div>
                 </div>
             </a>
-
-            <!-- KARTU FIKTIF -->
             <div class="card">
                 <div class="card-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Cyber Bites" class="card-img">
@@ -177,13 +152,9 @@
                 <div class="card-content">
                     <div class="card-title">Cyber Bites</div>
                     <p class="card-desc">Sistem pemesanan restoran digital dengan tema futuristik. Memudahkan pelanggan memesan secara langsung tanpa antre. (Coming Soon)</p>
-                    <div class="tags">
-                        <span class="card-tag">WEB APP</span>
-                        <span class="card-tag">SYSTEM</span>
-                    </div>
+                    <div class="tags"><span class="card-tag">WEB APP</span><span class="card-tag">SYSTEM</span></div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -199,7 +170,6 @@
         <p>&copy; 2026 Frost & Hog Studio. All rights reserved.</p>
     </footer>
 
-    <!-- SCRIPT MENU -->
     <script>
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('active');
