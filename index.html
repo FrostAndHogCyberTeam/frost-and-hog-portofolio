@@ -56,12 +56,20 @@
         .portfolio-section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
         .section-title { font-family: 'Orbitron', sans-serif; color: var(--pink); text-align: center; font-size: 2rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .card { background: rgba(255,255,255,0.02); border: 1px solid rgba(0,243,255,0.15); border-radius: 16px; overflow: hidden; position: relative; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: all 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .card { 
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(0,243,255,0.15); 
+            border-radius: 16px; overflow: hidden; position: relative; text-decoration: none; color: inherit;
+            display: flex; flex-direction: column; transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,243,255,0.15); border-color: var(--cyan); }
+        
         .card-img-wrapper { width: 100%; height: 240px; overflow: hidden; position: relative; }
         .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .card:hover .card-img { transform: scale(1.1); }
         .card-img-wrapper::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(5,8,15,1), transparent); }
+        
         .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; position: relative; z-index: 2; margin-top: -30px; }
         .card-title { font-family: 'Orbitron', sans-serif; color: #fff; font-size: 1.5rem; margin-bottom: 10px; }
         .card-desc { color: #a8b2c1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
@@ -103,7 +111,8 @@
     <div class="sidebar" id="sidebar">
         <div class="close-btn" onclick="toggleMenu()">×</div>
         <a href="index.html">Home</a>
-        <a href="kopi-senja.html">Another Portfolio</a>
+        <a href="kopi-senja.html">Kopi Senja</a>
+        <a href="cyber-bites.html">Cyber Bites</a>
         <a href="legalitas.html">Copyright & Legal</a>
         <a href="https://frostandhogcyberteam.github.io/frost-and-hog-website/" class="portal-btn">HIRE OUR TEAM ↗</a>
     </div>
@@ -135,6 +144,8 @@
     <section class="portfolio-section">
         <h2 class="section-title">Featured Projects</h2>
         <div class="grid">
+            
+            <!-- KARTU KOPI SENJA -->
             <a href="kopi-senja.html" class="card">
                 <div class="card-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="Kopi Senja" class="card-img">
@@ -145,16 +156,19 @@
                     <div class="tags"><span class="card-tag">WEB DESIGN</span><span class="card-tag">UI/UX</span></div>
                 </div>
             </a>
-            <div class="card">
+
+            <!-- KARTU CYBER BITES (SUDAH BISA DIKLIK) -->
+            <a href="cyber-bites.html" class="card">
                 <div class="card-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Cyber Bites" class="card-img">
                 </div>
                 <div class="card-content">
                     <div class="card-title">Cyber Bites</div>
-                    <p class="card-desc">Sistem pemesanan restoran digital dengan tema futuristik. Memudahkan pelanggan memesan secara langsung tanpa antre. (Coming Soon)</p>
+                    <p class="card-desc">Sistem pemesanan restoran digital dengan tema futuristik. Memudahkan pelanggan memesan secara langsung dengan antarmuka Neo-Fast Food.</p>
                     <div class="tags"><span class="card-tag">WEB APP</span><span class="card-tag">SYSTEM</span></div>
                 </div>
-            </div>
+            </a>
+
         </div>
     </section>
 
