@@ -31,11 +31,7 @@
         .overlay.active { display: block; }
 
         /* --- HEADER PORTFOLIO --- */
-        .portfolio-header { 
-            padding: 140px 20px 80px; text-align: center; 
-            background: radial-gradient(circle at center, #0a1525 0%, var(--bg-dark) 100%);
-            position: relative;
-        }
+        .portfolio-header { padding: 140px 20px 80px; text-align: center; background: radial-gradient(circle at center, #0a1525 0%, var(--bg-dark) 100%); position: relative; }
         .portfolio-header h1 { font-family: 'Orbitron', sans-serif; color: var(--cyan); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; text-shadow: 0 0 20px rgba(0, 243, 255, 0.5); margin-bottom: 15px; z-index: 2; letter-spacing: 4px; }
         .portfolio-header p { color: #a8b2c1; font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6; z-index: 2; }
         .agents-img { height: 220px; z-index: 2; animation: floatAgent 4s ease-in-out infinite; filter: drop-shadow(0px 20px 30px rgba(0, 243, 255, 0.4)); margin-bottom: 20px; }
@@ -112,7 +108,7 @@
         <div class="close-btn" onclick="toggleMenu()">×</div>
         <a href="index.html">Home</a>
         <a href="kopi-senja.html">Kopi Senja</a>
-        <a href="cyber-bites.html">Cyber Bites</a>
+        <a href="personal.html">Personal Branding</a>
         <a href="legalitas.html">Copyright & Legal</a>
         <a href="https://frostandhogcyberteam.github.io/frost-and-hog-website/" class="portal-btn">HIRE OUR TEAM ↗</a>
     </div>
@@ -145,7 +141,7 @@
         <h2 class="section-title">Featured Projects</h2>
         <div class="grid">
             
-            <!-- KARTU KOPI SENJA -->
+            <!-- KARTU KOPI SENJA (LINK AKTIF) -->
             <a href="kopi-senja.html" class="card">
                 <div class="card-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="Kopi Senja" class="card-img">
@@ -157,17 +153,29 @@
                 </div>
             </a>
 
-            <!-- KARTU CYBER BITES (SUDAH BISA DIKLIK) -->
-            <a href="cyber-bites.html" class="card">
+            <!-- KARTU PERSONAL BRANDING (LINK AKTIF) -->
+            <a href="personal.html" class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop" alt="Personal Portfolio" class="card-img">
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Personal Branding</div>
+                    <p class="card-desc">Desain web portofolio pribadi (CV Online) yang elegan. Cocok untuk freelancer, developer, atau profesional yang ingin membangun personal branding.</p>
+                    <div class="tags"><span class="card-tag">WEB DESIGN</span><span class="card-tag">PERSONAL</span></div>
+                </div>
+            </a>
+
+            <!-- KARTU CYBER BITES (COMING SOON - TIDAK BISA DIKLIK) -->
+            <div class="card">
                 <div class="card-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Cyber Bites" class="card-img">
                 </div>
                 <div class="card-content">
                     <div class="card-title">Cyber Bites</div>
-                    <p class="card-desc">Sistem pemesanan restoran digital dengan tema futuristik. Memudahkan pelanggan memesan secara langsung dengan antarmuka Neo-Fast Food.</p>
+                    <p class="card-desc">Sistem pemesanan restoran digital dengan tema futuristik. Memudahkan pelanggan memesan secara langsung tanpa antre. (Coming Soon)</p>
                     <div class="tags"><span class="card-tag">WEB APP</span><span class="card-tag">SYSTEM</span></div>
                 </div>
-            </a>
+            </div>
 
         </div>
     </section>
