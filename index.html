@@ -3,187 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frost & Hog | Portfolio Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Selected Works — Frost & Hog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --bg-dark: #05080f; 
-            --cyan: #00f3ff; 
-            --pink: #ff7eb3; 
-            --text-light: #e2e8f0; 
+        :root {
+            --bg: #09090B;
+            --panel: #101010;
+            --border: #27272A;
+            --ink: #F4F4F5;
+            --muted: #8F8F99;
+            --blue: #0033FF;
+            --mint: #99FFE4;
+            --warm: #FFC799;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
-        
-        /* --- NAVBAR & SIDEBAR --- */
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: flex-end; padding: 20px 30px; z-index: 1000; background: linear-gradient(to bottom, rgba(5,8,15,0.9) 0%, transparent 100%); }
-        .menu-btn { font-size: 35px; color: var(--cyan); cursor: pointer; text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); transition: 0.3s; }
-        .menu-btn:hover { transform: scale(1.1); }
-        
-        .sidebar { position: fixed; top: 0; right: -320px; width: 280px; height: 100vh; background: rgba(10, 15, 22, 0.98); backdrop-filter: blur(15px); border-left: 1px solid rgba(0, 243, 255, 0.2); z-index: 1001; transition: 0.4s ease; padding: 80px 20px; display: flex; flex-direction: column; gap: 15px; }
-        .sidebar.active { right: 0; }
-        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 30px; color: var(--pink); cursor: pointer; }
-        .sidebar a { color: var(--text-light); text-decoration: none; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1rem; padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-        .sidebar a:hover { color: var(--cyan); padding-left: 15px; border-left: 3px solid var(--cyan); }
-        .sidebar .portal-btn { color: #000; background: var(--cyan); text-align: center; border-radius: 8px; margin-top: 20px; border: none; box-shadow: 0 0 15px rgba(0,243,255,0.3); }
-        .sidebar .portal-btn:hover { background: #fff; color: #000; border-left: none; padding-left: 10px; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; display: none; }
-        .overlay.active { display: block; }
+        body { background-color: var(--bg); color: var(--ink); font-family: var(--font-sans); line-height: 1.5; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        a { color: var(--ink); text-decoration: none; }
 
-        /* --- HEADER PORTFOLIO --- */
-        .portfolio-header { padding: 140px 20px 80px; text-align: center; background: radial-gradient(circle at center, #0a1525 0%, var(--bg-dark) 100%); position: relative; }
-        .portfolio-header h1 { font-family: 'Orbitron', sans-serif; color: var(--cyan); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; text-shadow: 0 0 20px rgba(0, 243, 255, 0.5); margin-bottom: 15px; z-index: 2; letter-spacing: 4px; }
-        .portfolio-header p { color: #a8b2c1; font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6; z-index: 2; }
-        .agents-img { height: 220px; z-index: 2; animation: floatAgent 4s ease-in-out infinite; filter: drop-shadow(0px 20px 30px rgba(0, 243, 255, 0.4)); margin-bottom: 20px; }
-        @keyframes floatAgent { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: fadeUp 0.6s ease-out forwards; }
 
-        /* --- SECTION ARCTIC OPS --- */
-        .ski-section { position: relative; width: 100%; height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; background-image: url('img/kutub.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; border-top: 1px solid rgba(0,243,255,0.2); border-bottom: 1px solid rgba(0,243,255,0.2); }
-        .ski-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 8, 15, 0.5); z-index: 1; }
-        .ski-content { position: relative; z-index: 2; text-align: center; margin-top: -50px; }
-        .ski-title { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: #fff; text-transform: uppercase; text-shadow: 0 0 20px var(--cyan), 0 0 40px var(--cyan); }
-        .ski-subtitle { color: #fff; font-size: 1rem; letter-spacing: 3px; margin-top: 15px; font-weight: 600; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
-        .ski-img { position: absolute; bottom: 5%; left: -500px; height: 200px; z-index: 3; animation: skiing 8s linear infinite; filter: drop-shadow(0px 20px 25px rgba(0,0,0,0.9)); }
-        @keyframes skiing { 0% { transform: translateX(0px) translateY(0px) rotate(0deg); } 25% { transform: translateX(30vw) translateY(-15px) rotate(-6deg); } 50% { transform: translateX(60vw) translateY(0px) rotate(0deg); } 75% { transform: translateX(90vw) translateY(-15px) rotate(6deg); } 100% { transform: translateX(130vw) translateY(0px) rotate(0deg); } }
-        .snow { position: absolute; top: -10px; background: #fff; border-radius: 50%; opacity: 0.8; z-index: 2; animation: fall linear infinite; }
-        @keyframes fall { to { transform: translateY(105vh); } }
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 24px; height: 64px; border-bottom: 1px solid var(--border); position: fixed; top: 0; width: 100%; background: rgba(9, 9, 11, 0.85); backdrop-filter: blur(12px); z-index: 100; }
+        .nav-brand { font-family: var(--font-mono); font-size: 1rem; font-weight: 700; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-links .portal-btn { background: var(--ink); color: var(--bg); padding: 8px 18px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; transition: 0.2s; }
+        .nav-links .portal-btn:hover { background: var(--muted); }
 
-        /* --- GRID PORTFOLIO --- */
-        .portfolio-section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
-        .section-title { font-family: 'Orbitron', sans-serif; color: var(--pink); text-align: center; font-size: 2rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
-        .card { 
-            background: rgba(255,255,255,0.02); border: 1px solid rgba(0,243,255,0.15); 
-            border-radius: 16px; overflow: hidden; position: relative; text-decoration: none; color: inherit;
-            display: flex; flex-direction: column; transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,243,255,0.15); border-color: var(--cyan); }
-        
-        .card-img-wrapper { width: 100%; height: 240px; overflow: hidden; position: relative; }
-        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .card:hover .card-img { transform: scale(1.1); }
-        .card-img-wrapper::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(5,8,15,1), transparent); }
-        
-        .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; position: relative; z-index: 2; margin-top: -30px; }
-        .card-title { font-family: 'Orbitron', sans-serif; color: #fff; font-size: 1.5rem; margin-bottom: 10px; }
-        .card-desc { color: #a8b2c1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
-        .tags { display: flex; gap: 10px; flex-wrap: wrap; }
-        .card-tag { background: rgba(0, 243, 255, 0.1); color: var(--cyan); padding: 5px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; }
+        /* Hero */
+        .hero { padding: 160px 24px 80px; max-width: 1100px; margin: 0 auto; width: 100%; }
+        .hero-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--mint); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+        .hero-meta::before { content: ''; width: 6px; height: 6px; background: var(--mint); border-radius: 50%; }
+        .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 24px; }
+        .hero p { font-size: 1.1rem; color: var(--muted); max-width: 600px; }
 
-        /* --- SECTION HIRE PORTAL --- */
-        .hire-section { text-align: center; padding: 80px 20px; background: linear-gradient(to top, #020408, #05080f); border-top: 1px solid rgba(0, 243, 255, 0.15); }
-        .hire-section h2 { font-family: 'Orbitron', sans-serif; color: var(--cyan); font-size: 2rem; margin-bottom: 20px; text-shadow: 0 0 15px rgba(0,243,255,0.3); }
-        .hire-section p { color: #8892b0; margin-bottom: 35px; font-size: 1.1rem; }
-        .btn-hire { display: inline-block; padding: 18px 50px; background: transparent; color: var(--cyan); border: 2px solid var(--cyan); font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.3rem; text-decoration: none; border-radius: 8px; transition: 0.3s; letter-spacing: 3px; box-shadow: 0 0 20px rgba(0,243,255,0.15); }
-        .btn-hire:hover { background: var(--cyan); color: #000; box-shadow: 0 0 40px var(--cyan); transform: translateY(-5px); }
-
-        /* --- FOOTER --- */
-        .footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); background: #010204; }
-        .footer p { color: #555; font-size: 0.85rem; }
+        /* Work Grid */
+        .work-section { padding: 0 24px 80px; max-width: 1100px; margin: 0 auto; width: 100%; }
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 40px; }
+        .section-header h2 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 400; }
         
+        .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .project-card { display: flex; flex-direction: column; gap: 20px; }
+        .preview-frame { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; position: relative; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s; }
+        .project-card:hover .preview-frame { border-color: #52525B; }
+        .preview-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: transform 0.6s ease, opacity 0.3s; }
+        .project-card:hover .preview-frame img { transform: scale(1.03); opacity: 1; }
+        
+        .card-info { display: flex; justify-content: space-between; align-items: flex-start; }
+        .card-title { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
+        .card-desc { font-size: 0.85rem; color: var(--muted); max-width: 80%; }
+        .card-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+        .tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); border: 1px solid var(--border); padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
+        .card-arrow { font-family: var(--font-mono); font-size: 1.2rem; color: var(--muted); transition: transform 0.3s, color 0.3s; }
+        .project-card:hover .card-arrow { transform: translate(4px, -4px); color: var(--ink); }
+
+        /* Approach */
+        .approach-section { padding: 80px 24px; border-top: 1px solid var(--border); max-width: 1100px; margin: 0 auto; width: 100%; }
+        .approach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .step h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .step h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+        .step p { font-size: 0.85rem; color: var(--muted); }
+
+        /* Footer */
+        footer { border-top: 1px solid var(--border); padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); margin-top: auto; }
+        .c-icon { border: 1px solid var(--border); width: 22px; height: 22px; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; margin-right: 8px; }
+
         @media (max-width: 768px) {
-            .ski-title { font-size: 2rem; }
-            .ski-img { height: 150px; }
+            .nav-links a:not(.portal-btn) { display: none; }
+            .work-grid { grid-template-columns: 1fr; }
+            .approach-grid { grid-template-columns: 1fr; gap: 24px; }
+            footer { flex-direction: column; gap: 12px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- PERINGATAN PORTFOLIO (SEPERTI SHOW UNIT) -->
-    <div id="portfolio-warning" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 8, 15, 0.95); backdrop-filter: blur(8px); z-index: 99999; display: flex; justify-content: center; align-items: center; text-align: center; padding: 20px;">
-        <div style="max-width: 650px; background: rgba(13, 17, 23, 0.9); border: 1px solid var(--cyan); border-radius: 20px; padding: 50px 40px; box-shadow: 0 0 50px rgba(0, 243, 255, 0.2), inset 0 0 30px rgba(0,0,0,0.5); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--cyan), var(--pink));"></div>
-            <h2 style="font-family: 'Orbitron', sans-serif; color: var(--cyan); margin-bottom: 20px; font-size: 1.8rem; letter-spacing: 2px; text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);">⚠️ PORTFOLIO SHOWCASE</h2>
-            <p style="color: #e2e8f0; margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; text-align: justify;">Anda sedang melihat <b>Contoh Website (Showcase)</b> yang dirancang khusus oleh Frost & Hog Cyber Team untuk keperluan portofolio.</p>
-            <p style="color: #8892b0; margin-bottom: 30px; line-height: 1.6; font-size: 0.95rem; text-align: justify; border-left: 3px solid var(--pink); padding-left: 15px;">Segala bentuk transaksi, tautan eksternal, dan kontak yang ada di dalam web ini adalah <b>fiktif/dummy</b>. Dilarang menggunakan, menyalin, atau memperjualbelikan desain ini tanpa izin tertulis dari tim kami.</p>
-            <button onclick="document.getElementById('portfolio-warning').style.display='none'" style="background: transparent; color: var(--cyan); border: 2px solid var(--cyan); padding: 15px 40px; font-weight: 900; font-family: 'Orbitron', sans-serif; font-size: 1rem; border-radius: 8px; cursor: pointer; transition: 0.3s; letter-spacing: 2px; box-shadow: 0 0 15px rgba(0,243,255,0.2);" onmouseover="this.style.background='var(--cyan)'; this.style.color='#000'; this.style.boxShadow='0 0 30px var(--cyan)';" onmouseout="this.style.background='transparent'; this.style.color='var(--cyan)'; this.style.boxShadow='0 0 15px rgba(0,243,255,0.2)';">SAYA MENGERTI & MASUK</button>
+    <nav class="animate-in">
+        <div class="nav-brand">FROST & HOG</div>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#approach">Approach</a>
+            <a href="https://frostandhogcyberteam.github.io/frost-and-hog-website/" class="portal-btn">Main Portal ↗</a>
         </div>
-    </div>
+    </nav>
 
-    <!-- NAVBAR & SIDEBAR -->
-    <div class="navbar"><div class="menu-btn" onclick="toggleMenu()">☰</div></div>
-    <div class="sidebar" id="sidebar">
-        <div class="close-btn" onclick="toggleMenu()">×</div>
-        <a href="index.html">Home</a>
-        <a href="kopi-senja.html">Kopi Senja</a>
-        <a href="legalitas.html">Copyright & Legal</a>
-        <a href="https://frostandhogcyberteam.github.io/frost-and-hog-website/" class="portal-btn">HIRE OUR TEAM ↗</a>
-    </div>
-    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
-    <!-- HEADER PORTFOLIO -->
-    <div class="portfolio-header">
-        <img src="img/agents.png" alt="Frost & Hog Agents" class="agents-img" onerror="this.style.display='none'">
-        <h1>Our Portfolio</h1>
-        <p>Showcasing our best digital works. Crafted with precision, secured with code.</p>
-    </div>
-
-    <!-- SECTION ARCTIC OPS -->
-    <section class="ski-section">
-        <div class="snow" style="left: 10%; width: 8px; height: 8px; animation-duration: 4s;"></div>
-        <div class="snow" style="left: 30%; width: 6px; height: 6px; animation-duration: 6s;"></div>
-        <div class="snow" style="left: 50%; width: 10px; height: 10px; animation-duration: 5s;"></div>
-        <div class="snow" style="left: 70%; width: 5px; height: 5px; animation-duration: 3s;"></div>
-        <div class="snow" style="left: 85%; width: 9px; height: 9px; animation-duration: 4.5s;"></div>
-        <div class="snow" style="left: 95%; width: 7px; height: 7px; animation-duration: 7s;"></div>
-        <div class="ski-content">
-            <h2 class="ski-title">Arctic Ops</h2>
-            <p class="ski-subtitle">WE OPERATE IN ALL CONDITIONS.</p>
-        </div>
-        <img src="img/ski.png" alt="Frost & Hog Skiing" class="ski-img" onerror="this.style.display='none'">
+    <section class="hero animate-in">
+        <div class="hero-meta">Selected Works 2026</div>
+        <h1>Digital systems,<br>built to last.</h1>
+        <p>Kami membangun antarmuka yang bersih, sistem yang aman, dan pengalaman yang tidak membuat pengguna bingung.</p>
     </section>
 
-    <!-- PORTFOLIO GRID -->
-    <section class="portfolio-section">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="grid">
+    <section class="work-section animate-in" id="work" style="animation-delay: 0.1s;">
+        <div class="section-header">
+            <h2>Case Studies</h2>
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--border);">02 PROJECTS</span>
+        </div>
+        
+        <div class="work-grid">
             
-            <!-- KARTU KOPI SENJA (LINK AKTIF) -->
-            <a href="kopi-senja.html" class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="Kopi Senja" class="card-img">
+            <!-- KOPI SENJA -->
+            <a href="kopi-senja.html" class="project-card">
+                <div class="preview-frame">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop" alt="Kopi Senja Preview">
                 </div>
-                <div class="card-content">
-                    <div class="card-title">Kopi Senja</div>
-                    <p class="card-desc">Desain web modern untuk Coffee Shop & Restoran. Dilengkapi katalog menu lengkap, integrasi layanan antar, dan portal pemesanan khusus.</p>
-                    <div class="tags"><span class="card-tag">WEB DESIGN</span><span class="card-tag">UI/UX</span></div>
+                <div class="card-info">
+                    <div>
+                        <div class="card-title">Kopi Senja</div>
+                        <div class="card-desc">Dark editorial bistro experience. Fokus pada suasana, menu harian, dan reservasi.</div>
+                        <div class="card-tags">
+                            <span class="tag">Hospitality</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Web Dev</span>
+                        </div>
+                    </div>
+                    <div class="card-arrow">↗</div>
                 </div>
             </a>
 
-            <!-- KARTU CYBER BITES (COMING SOON - TIDAK BISA DIKLIK) -->
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Cyber Bites" class="card-img">
+            <!-- WEATHER / COMMUNITY -->
+            <a href="https://frostandhogcyberteam.github.io/frost-and-hog-weather/" target="_blank" class="project-card">
+                <div class="preview-frame">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Community Data Platform">
                 </div>
-                <div class="card-content">
-                    <div class="card-title">Cyber Bites</div>
-                    <p class="card-desc">Sistem pemesanan restoran digital dengan tema futuristik. Memudahkan pelanggan memesan secara langsung tanpa antre. (Coming Soon)</p>
-                    <div class="tags"><span class="card-tag">WEB APP</span><span class="card-tag">SYSTEM</span></div>
+                <div class="card-info">
+                    <div>
+                        <div class="card-title">Community Data Platform</div>
+                        <div class="card-desc">Sistem pemantauan data real-time untuk komunitas. Studi kasus arsitektur data dan aksesibilitas.</div>
+                        <div class="card-tags">
+                            <span class="tag">Data Viz</span>
+                            <span class="tag">API</span>
+                            <span class="tag">Community</span>
+                        </div>
+                    </div>
+                    <div class="card-arrow">↗</div>
                 </div>
-            </div>
+            </a>
 
         </div>
     </section>
 
-    <!-- SECTION HIRE PORTAL -->
-    <section class="hire-section">
-        <h2>Ready to Build Your Dream Website?</h2>
-        <p>Klik tombol di bawah ini untuk langsung menuju portal pendaftaran klien kami.</p>
-        <a href="https://frostandhogcyberteam.github.io/frost-and-hog-website/" class="btn-hire">HIRE OUR TEAM</a>
+    <section class="approach-section animate-in" id="approach" style="animation-delay: 0.2s;">
+        <div class="section-header">
+            <h2>How We Work</h2>
+        </div>
+        <div class="approach-grid">
+            <div class="step">
+                <h3>01 / Discovery</h3>
+                <h4>Understand the problem.</h4>
+                <p>Kami memetakan kebutuhan, batasan teknis, dan tujuan bisnis sebelum menulis satu baris kode.</p>
+            </div>
+            <div class="step">
+                <h3>02 / Build</h3>
+                <h4>Engineer the system.</h4>
+                <p>Fokus pada performa, struktur yang bersih, dan keamanan dasar sejak tahap pengembangan.</p>
+            </div>
+            <div class="step">
+                <h3>03 / Handover</h3>
+                <h4>Deploy and document.</h4>
+                <p>Serah terima aset, dokumentasi teknis, dan panduan penggunaan agar sistem bisa dikelola mandiri.</p>
+            </div>
+        </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p>&copy; 2026 Frost & Hog Studio. All rights reserved.</p>
+    <footer>
+        <span><span class="c-icon">C</span> 2026 FROST & HOG CYBER TEAM.</span>
+        <span>ALL RIGHTS RESERVED.</span>
     </footer>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
